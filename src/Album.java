@@ -5,8 +5,9 @@ public class Album {
     private String artist;
     private List<Song> songs;
 
-    public Album(String songs,String artist) {
+    public Album(String name,String artist) {
         this.artist = artist;
+        this.name = name;
         this.songs = new ArrayList<>();
     }
 
@@ -69,7 +70,7 @@ public class Album {
         index -= 1;
         if(index >= 0 && index < this.songs.size()){
             myplayList.add(this.songs.get(index));
-            System.out.println("Your si=ong has been added");
+            System.out.println("Your song has been added to playList");
             return true;
         }
         System.out.println("Invalid Song number !!");
