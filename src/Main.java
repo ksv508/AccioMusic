@@ -37,17 +37,22 @@ public class Main {
         if(!itr.hasNext()){
             System.out.println("Your playList is Empty");
         }
+        boolean wasNext = false;
         System.out.println("Now Playing ");
         System.out.println((itr.next()));
         printMenu();
         Scanner sc = new Scanner(System.in);
-        boolean flag = false;
+        boolean quit = false;
         while(true){
             System.out.println("Please enter your option");
             int opt = sc.nextInt();
             switch (opt){
                 case 1:
                     if(itr.hasNext()){
+                        if(!wasNext){
+                            itr.next();
+                            wasNext= true;
+                        }
                         System.out.println("Now Playing");
                         System.out.println(itr.next());
                     }
@@ -57,15 +62,29 @@ public class Main {
                     break;
                 case 2:
                     if(itr.hasPrevious()){
+                        if(wasNext){
+                            itr.previous();
+                            wasNext = false;
+                        }
                         System.out.println("Now Playing");
                         System.out.println(itr.previous());
+                        wasNext = false;
                     }
                     else{
                         System.out.println("You have reached to starting of the playList");
                     }
                     break;
                 case 3:
-                    System.out.println("Now Playing");
+                    if(wasNext == false){
+                        if(itr.hasNext());
+                        System.out.println("Now Playing");
+                        System.out.println(itr.next());
+                    }
+                    else{
+                        if(itr.hasPrevious());
+                        System.out.println("Now Playing");
+                        System.out.println(itr.previous());
+                    }
                     break;
                 case 4:
                     printSong(playList);
